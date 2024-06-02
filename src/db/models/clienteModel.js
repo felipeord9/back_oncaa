@@ -28,7 +28,7 @@ const ClienteSchema = {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  fechaNacimiento:{
+  oncaaId:{
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -64,7 +64,15 @@ const ClienteSchema = {
     allowNull: false,
     field: 'created_at',
     defaultValue: Sequelize.NOW
-  }
+  },
+  base64Image: {
+    type: DataTypes.TEXT,
+    allowNull:true
+  },
+  blobImage: {
+    type: DataTypes.BLOB,
+    allowNull:true
+  },
 };
 
 class Cliente extends Model {

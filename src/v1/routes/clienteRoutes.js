@@ -12,6 +12,7 @@ router
   .get("/", ClienteController.findAllClientes)
   .get("/:id", ClienteController.findOneCliente)
   .get("/cedula/:id", ClienteController.findOneByCedula)
+  .get("/oncaa/id/:oncaaId", ClienteController.findOneByOncaaId)
   .post('/', ClienteController.createCliente)
   .patch('/:id', ClienteController.updateCliente)
   .delete('/:id', ClienteController.deleteCliente);

@@ -43,6 +43,21 @@ const findOneByCedula = async (req, res, next) => {
   }
 }
 
+const findOneByOncaaId = async (req, res, next) => {
+  try {
+    
+    const { params: { oncaaId } } = req;
+    const data = await ClienteService.findByOncaaId(oncaaId);
+
+    res.status(200).json({
+      message: 'OK',
+      data,
+    });
+  } catch (error) {
+    next(error)
+  }
+}
+
 const createCliente = async (req, res, next) => {
   try {
     const { body } = req
@@ -61,7 +76,7 @@ const createCliente = async (req, res, next) => {
       nombre:body.nombre,
       correo:body.correo,
       telefono:body.telefono,
-      fechaNacimiento:body.fechaNacimiento,
+      oncaaId:body.oncaaId,
       sexo:body.sexo,
       plan:suscripcion.id,
       centroSalud:body.centroSalud,
@@ -112,6 +127,7 @@ module.exports = {
   findAllClientes,
   findOneCliente,
   findOneByCedula,
+  findOneByOncaaId,
   createCliente,
   updateCliente,
   deleteCliente

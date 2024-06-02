@@ -28,6 +28,7 @@ const remove = async(id)=>{
 }
 
 const update = async (id, changes) => {
+    console.log(changes)
     const Suscripcion = await findOne(id)
     const updatedSuscripcion = await Suscripcion.update(changes)
   

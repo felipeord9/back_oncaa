@@ -12,6 +12,15 @@ const find = async () => {
   return Clientes
 }
 
+const findHuella =async () =>{
+  const huellas = await models.Cliente.findAll({
+    include:[
+      "suscripcion"
+    ]
+  })
+  return huellas
+}
+
 const findOne = async (id) => {
   const Cliente = await models.Cliente.findByPk(id)
 
@@ -25,6 +34,21 @@ const findByCedula = async (cedula) => {
   const Cliente = await models.Cliente.findOne({
     where:{
       rowId:cedula
+    },
+    include:[
+      "suscripcion"
+    ]
+  })
+  if(!Cliente) throw boom.notFound('Cliente no encontrado')
+
+  return Cliente
+}
+
+const findByOncaaId = async (oncaaId) => {
+  console.log(oncaaId)
+  const Cliente = await models.Cliente.findOne({
+    where:{
+      oncaaId:oncaaId
     },
     include:[
       "suscripcion"
@@ -55,8 +79,10 @@ const remove = async (id) => {
 
 module.exports = {
   find,
+  findHuella,
   findOne,
   findByCedula,
+  findByOncaaId,
   create,
   update,
   remove
