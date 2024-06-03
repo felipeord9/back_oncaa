@@ -29,6 +29,21 @@ const findOneEmpleado = async (req, res, next) => {
     }
   };
 
+  const findOneByCedula = async (req, res, next) => {
+    try {
+      
+      const { params: { id } } = req;
+      const data = await EmpleadoService.findByCedula(id);
+  
+      res.status(200).json({
+        message: 'OK',
+        data,
+      });
+    } catch (error) {
+      next(error)
+    }
+  }
+
   const updateEmpleado = async (req, res, next) => {
     try {
       const { params: { id }, body } = req
@@ -59,6 +74,7 @@ const deleteEmpleado = async(req,res,next)=>{
 module.exports = {
     findAllEmpleados,
     findOneEmpleado,
+    findOneByCedula,
     updateEmpleado,
     deleteEmpleado,
 }

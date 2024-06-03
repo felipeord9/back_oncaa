@@ -10,6 +10,18 @@ const find= async()=>{
     return Empleados
 };
 
+const findByCedula = async (cedula) => {
+    console.log(cedula)
+    const Empleado = await models.Empleado.findOne({
+      where:{
+        rowId:cedula
+      }
+    })
+    if(!Empleado) throw boom.notFound('Empleado no encontrado')
+  
+    return Empleado
+  }
+
 const create = async(body)=>{
     const newEmpleado = await models.Empleado.create(body)
     return newEmpleado   
@@ -37,6 +49,7 @@ const remove = async(id)=>{
 
 module.exports={
     find,
+    findByCedula,
     create,
     findOne,
     update,

@@ -11,6 +11,7 @@ const router = express.Router();
 router
   .get("/", EmpleadoController.findAllEmpleados)
   .get("/:id", EmpleadoController.findOneEmpleado)
+  .get("/cedula/:id", EmpleadoController.findOneByCedula)
   .patch('/:id', EmpleadoController.updateEmpleado)
   .delete('/:id', EmpleadoController.deleteEmpleado);
 
